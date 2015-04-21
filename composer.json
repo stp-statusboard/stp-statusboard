@@ -1,0 +1,47 @@
+{
+  "name": "stp-statusboard/stp-statusboard",
+  "description": "Schibsted Tech Polska simple status board project",
+  "version": "0.1.0",
+  "type": "project",
+  "keywords": [
+    "schibsted",
+    "stp",
+    "status",
+    "dashboard"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Michal Plachta",
+      "email": "michal.plachta@schibsted.pl"
+    }
+  ],
+  "require": {
+    "silex/silex": "1.2.*",
+    "twig/twig": "1.9.*",
+    "deralex/yaml-config-service-provider": "1.0.*",
+    "stp-statusboard/stp-statusboard-base": "0.*",
+    "filipgolonka/bower-config-mergetool": "dev-master"
+  },
+  "require-dev": {
+    "phpmd/phpmd": "2.2.*",
+    "sebastian/phpcpd": "2.0.*",
+    "squizlabs/php_codesniffer": "2.3.*"
+  },
+  "autoload": {
+    "psr-0": {
+      "StpBoard\\Home\\": "src",
+      "StpBoard\\Clock\\": "src"
+    }
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "STP\\Bower\\ConfigMergeTool::mergeConfig",
+      "npm install"
+    ],
+    "post-update-cmd": [
+      "STP\\Bower\\ConfigMergeTool::mergeConfig",
+      "npm install"
+    ]
+  }
+}
