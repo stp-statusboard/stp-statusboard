@@ -37,6 +37,7 @@
   "scripts": {
     "post-install-cmd": [
       "STP\\Bower\\ConfigMergeTool::mergeConfig",
+      "cp config/config.yml.dist config/config.yml",
       "npm install"
     ],
     "post-update-cmd": [

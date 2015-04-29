@@ -1,0 +1,9 @@
+boards:
+  test:
+    title: First Board
+    items:
+      -
+        id: clock1
+        provider: \StpBoard\Clock\ClockControllerProvider
+        refresh: 0
+        width: 4
