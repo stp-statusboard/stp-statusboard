@@ -1,0 +1,34 @@
+{% extends 'layout_simple.html.twig' %}
+
+{% set bodyClasses = 'rotating' %}
+
+{% block body %}
+    {% for board in boards %}
+        <iframe class="board-iframe" src="/boards/{{ board.id }}"></iframe>
+    {% endfor %}
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript">
+        var currentVisible = 0,
+            iframesCount = {{ boards|length }};
+        $('document').ready(function () {
+            rotateBoards();
+            setInterval(rotateBoards, 10000); // 10 seconds
+
+            setTimeout(function () {
+                window.location.reload();
+            }, 3600000); // 1 hour
+        });
+
+        function rotateBoards() {
+            currentVisible++;
+            if (currentVisible > iframesCount) {
+                currentVisible = 1;
+            }
+
+            $('.board-iframe.visible').removeClass('visible');
+            $('.board-iframe:nth-child(' + currentVisible + ')').addClass('visible');
+        }
+    </script>
+{% endblock %}

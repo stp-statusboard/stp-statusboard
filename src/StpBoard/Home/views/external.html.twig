@@ -1,0 +1,22 @@
+{% extends 'layout_simple.html.twig' %}
+
+{% set bodyClasses = 'external_page' %}
+
+{% block body %}
+    <iframe class="board-iframe visible" src="{{ url }}" data-refresh="{{ refresh }}"></iframe>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(function() {
+            var $iframe = $('.board-iframe');
+            var refresh = parseInt($iframe.data('refresh'), 10);
+
+            if (refresh > 0) {
+                setInterval(function() {
+                    $iframe[0].src = $iframe[0].src;
+                }, refresh * 1000);
+            }
+        });
+    </script>
+{% endblock %}

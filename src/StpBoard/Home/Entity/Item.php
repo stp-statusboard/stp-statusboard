@@ -73,7 +73,13 @@ class Item
         ];
 
         foreach ($this->getParams() as $key => $value) {
-            $urlParts[] = $key . '=' . urlencode($value);
+            if (is_array($value)) {
+                foreach ($value as $val) {
+                    $urlParts[] = $key . '[]=' . urlencode($val);
+                }
+            } else {
+                $urlParts[] = $key . '=' . urlencode($value);
+            }
         }
 
         return $baseUrl . join('&', $urlParts);

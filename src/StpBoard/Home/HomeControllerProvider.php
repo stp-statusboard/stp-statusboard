@@ -81,9 +81,13 @@ class HomeControllerProvider implements ControllerProviderInterface
             $controllers->get(
                 '/boards/' . $id,
                 function () use ($that, $board) {
+                    if (isset($board['type']) && $board['type'] == 'external_page') {
+                        return $that->twig->render('index.html.twig');
+                    }
+
                     $board['items'] = BoardItemsService::initBoardItems($board['items']);
 
-                    return $that->twig->render('index.html.twig', $board);
+                    return $that->twig->render('external.html.twig', $board);
                 }
             );
         }
@@ -93,6 +97,18 @@ class HomeControllerProvider implements ControllerProviderInterface
             function () use ($that, $boards) {
                 return $that->twig->render(
                     'boards.html.twig',
+                    [
+                        'boards' => $boards
+                    ]
+                );
+            }
+        );
+
+        $controllers->get(
+            '/rotating',
+            function () use ($that, $boards) {
+                return $that->twig->render(
+                    'rotating.html.twig',
                     [
                         'boards' => $boards
                     ]

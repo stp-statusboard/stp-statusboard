@@ -7,3 +7,9 @@ boards:
         provider: \StpBoard\Clock\ClockControllerProvider
         refresh: 0
         width: 4
+
+  external_page:
+    title: External page
+    type: external_page
+    url: http://www.google.com
+    refresh: 300 # optional - in seconds

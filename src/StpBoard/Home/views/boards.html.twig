@@ -3,6 +3,9 @@
 {% set title = 'STP' %}
 
 {% block body %}
+    <p>
+        <a href="/rotating">Rotate all boards</a>
+    </p>
     <ul>
         {% for board in boards %}
             <li><a href="/boards/{{ board.id }}">{{ board.title }}</a></li>
