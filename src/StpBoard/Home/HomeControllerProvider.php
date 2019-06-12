@@ -82,12 +82,12 @@ class HomeControllerProvider implements ControllerProviderInterface
                 '/boards/' . $id,
                 function () use ($that, $board) {
                     if (isset($board['type']) && $board['type'] == 'external_page') {
-                        return $that->twig->render('index.html.twig');
+                        return $that->twig->render('external.html.twig');
                     }
 
                     $board['items'] = BoardItemsService::initBoardItems($board['items']);
 
-                    return $that->twig->render('external.html.twig', $board);
+                    return $that->twig->render('index.html.twig', $board);
                 }
             );
         }
